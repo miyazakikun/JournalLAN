@@ -14,6 +14,36 @@
                <li class="@if(\Request::is('journals')) active @endif"><a href="{{url('journals')}}"><i class="fa fa-table"></i> Data Journal</a></li>
              </ul>
        </li>
+       <li class="@if(\Request::is('user/authors') || \Request::is('user/authors/*')) active @endif treeview">
+              <a href="{{url('user/authors')}}">
+               <i class="fa fa-user"></i>
+               <span>User Author</span>
+             </a>
+             <ul class="treeview-menu">
+               <li class="@if(\Request::is('user/authors/create')) active @endif"><a href="{!! route('user.create',['authors']) !!}"><i class="fa fa-plus-circle"></i> Add Author</a></li>
+               <li class="@if(\Request::is('user/authors')) active @endif"><a href="{{url('user/authors')}}"><i class="fa fa-table"></i> Data Author</a></li>
+             </ul>
+       </li>
+       <li class="@if(\Request::is('user/checkers') || \Request::is('user/checkers/*')) active @endif treeview">
+              <a href="{{url('user/checkers')}}">
+               <i class="fa fa-check-circle"></i>
+               <span>Admin Checker</span>
+             </a>
+             <ul class="treeview-menu">
+               <li class="@if(\Request::is('user/checkers/create')) active @endif"><a href="{!! route('user.create',['checkers']) !!}"><i class="fa fa-plus-circle"></i> Add Admin Checkers</a></li>
+               <li class="@if(\Request::is('user/checkers')) active @endif"><a href="{{url('user/checkers')}}"><i class="fa fa-table"></i> Data Admin Checkers</a></li>
+             </ul>
+       </li>
+       <li class="@if(\Request::is('user/reviewers') || \Request::is('user/reviewers/*')) active @endif treeview">
+              <a href="{{url('user/reviewers')}}">
+               <i class="fa fa-eye"></i>
+               <span>User Reviewer</span>
+             </a>
+             <ul class="treeview-menu">
+               <li class="@if(\Request::is('user/reviewers/create')) active @endif"><a href="{!! route('user.create',['reviewers']) !!}"><i class="fa fa-plus-circle"></i> Add Reviewers</a></li>
+               <li class="@if(\Request::is('user/reviewers')) active @endif"><a href="{{url('user/reviewers')}}"><i class="fa fa-table"></i> Data Reviewers</a></li>
+             </ul>
+       </li>
        {{-- <li class="treeview">
          <a href="#">
            <i class="fa fa-dashboard"></i> <span>Dashboard</span>

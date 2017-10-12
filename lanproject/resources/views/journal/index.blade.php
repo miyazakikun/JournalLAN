@@ -31,7 +31,9 @@
                         <td>{{$no++}}</td>
                         <td>{{$journal->author}}</td>
                         <td>{{$journal->title}}</td>
-                        <td>{{$journal->tglterbit}}</td>
+                        <td>
+                          {{Carbon\Carbon::parse($journal->tglterbit)->toFormattedDateString()}}
+                        </td>
                         <td>{{$journal->status}}</td>
                         <td>
                           {!! Form::open(['route' => ['journals.destroy', $journal->id], 'method' => 'delete']) !!}

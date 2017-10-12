@@ -33,18 +33,24 @@ class HomeController extends Controller
     }
     public function profile($id)
     {
-        return view('auth.profile');
+        $user = User::findOrFail($id);
+        return view('auth.profile', compact('user'));
     }
     public function updateprofile(Request $request,$id)
     {
         $data = User::findOrFail($id);
         $this->validate($request,[
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:30|unique:users,username'.$user->id,
-            'email' => 'required|string|email|max:255|unique:users,email'.$user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$data->id,
+            'username' => 'required|string|max:30|unique:users,username,'.$data->id,
             'password' => 'required|string|min:6',
         ]);
-        $data = $data->update($request->all());
+        $data = $data->update([
+                        'name' => $request->name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => bcrypt($request->password),
+                    ]);
         Toastr::success('Aksi Berhasil', 'Ubah Profile Berhasil');
         return redirect()->back();
     }

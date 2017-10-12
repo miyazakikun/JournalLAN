@@ -1,7 +1,7 @@
 <!-- Title Field -->
 <div class="form-group col-sm-6 {{ $errors->has('author') ? 'has-error' :'' }}">
     {!! Form::label('author', 'Penulis:') !!}
-    {!! Form::text('author', null, ['class' => 'form-control']) !!}
+    {!! Form::text('author', null, ['class' => 'form-control','required']) !!}
     @if ($errors->has('author'))
         @section('scripts')
             <script type="text/javascript">
@@ -12,7 +12,7 @@
 </div>
 <div class="form-group col-sm-6 {{ $errors->has('title') ? 'has-error' :'' }}">
     {!! Form::label('title', 'Judul:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+    {!! Form::text('title', null, ['class' => 'form-control','required']) !!}
     @if ($errors->has('title'))
         @section('scripts')
             <script type="text/javascript">
@@ -23,7 +23,7 @@
 </div>
 <div class="form-group col-sm-6 {{ $errors->has('tglterbit') ? 'has-error' :'' }}">
     {!! Form::label('tglterbit', 'Tanggal Terbit:') !!}
-    {!! Form::date('tglterbit', null, ['class' => 'form-control']) !!}
+    {!! Form::date('tglterbit', null, ['class' => 'form-control','required']) !!}
     @if ($errors->has('tglterbit'))
         @section('scripts')
             <script type="text/javascript">
@@ -34,11 +34,12 @@
 </div>
 <div class="form-group col-sm-6 {{ $errors->has('file') ? 'has-error' :'' }}">
     {!! Form::label('file', 'File Journal:') !!}
-    {!! Form::file('file', ['class' => 'form-control']) !!}
+    {!! Form::file('file', ['class' => 'form-control','required','accept'=>'application/pdf']) !!}
+     <small class="text-muted">Upload Hanya file berekstensi PDF</small>
     @if ($errors->has('file'))
         @section('scripts')
             <script type="text/javascript">
-            toastr.error('Data Error', 'Data File Journal Wajib Diisi!')
+            toastr.error('Data Error', 'Data File Journal Wajib Diisi / File Hasus Berekstensi PDF !')
             </script>
         @endsection
     @endif

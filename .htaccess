@@ -14,7 +14,7 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
     RewriteRule ^(lanproject/) - [F,L,NC]
-    ErrorDocument 403 localhost/lanproject/errors
+    ErrorDocument 403 http://localhost/lanproject/errors
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

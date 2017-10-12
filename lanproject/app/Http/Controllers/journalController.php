@@ -48,7 +48,7 @@ class journalController extends Controller
             'tglterbit'=>'required',
             'abstract'=>'required',
             'references'=>'required',
-            'file'=>'required|mimes:pdf,doc,ppt,jpg,jpeg,png,xls,docx,pptx,xlsx,rar,zip|max:100000|file',
+            'file'=>'required|mimes:pdf|max:100000|file',
         ]);
          $data = journal::create($request->all());
          $file       = $request->file('file');
@@ -68,7 +68,8 @@ class journalController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = journal::findOrFail($id);
+        return view('journal.show',compact('data'));
     }
 
     /**
@@ -98,7 +99,7 @@ class journalController extends Controller
           'tglterbit'=>'required',
           'abstract'=>'required',
           'references'=>'required',
-          'file'=>'mimes:pdf,doc,ppt,jpg,jpeg,png,xls,docx,pptx,xlsx,rar,zip|max:100000|file',
+          'file'=>'mimes:pdf|max:100000|file',
       ]);
        $data = journal::findOrFail($id);
        $update = $data->update($request->all());
